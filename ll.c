@@ -87,6 +87,7 @@ int print_q(){
 
 int main(){
 
+    char line[100];
     while(1){
         int operation = print_q();
         switch(operation){
@@ -94,11 +95,18 @@ int main(){
                 print_list(&start);
                 break;
             case 2: 
-                insert_node(&start, new_element("zzz"));
-                insert_node(&start, new_element("az"));
+                printf("Type text element to add: ");
+                fgets(line, sizeof(line), stdin);
+                line[strcspn(line, "\n")] = 0;
+                insert_node(&start, new_element(line));
+                printf("\n");
                 break;
             case 3: 
-                remove_node(&start, "zzz");
+                printf("Type text element to remove: ");
+                fgets(line, sizeof(line), stdin);
+                line[strcspn(line, "\n")] = 0;
+                remove_node(&start, line);
+                printf("\n");
                 break;
             case 0:
                 exit(0);
